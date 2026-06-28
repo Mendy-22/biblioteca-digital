@@ -1,0 +1,36 @@
+digraph UML {
+    rankdir=BT;
+    node [shape=record, fontname="Arial", fontsize=11];
+    edge [fontname="Arial", fontsize=10];
+
+    node [style=filled, fillcolor="lightyellow"];
+
+    MetaLibro [label="{MetaLibro (metaclass)|_isbns: Set[str]|+ __call__()\l+ limpiar_isbns()\l}", fillcolor="lightcyan"];
+
+    Persona [label="{Persona (abstracta)|nombre: str\lapellido: str\l dni: str\l|+ obtener_tipo_usuario(): str\l}", fillcolor="lightgray"];
+
+    Usuario [label="{Usuario|email: str\l|+ obtener_tipo_usuario(): str\l}"];
+
+    UsuarioRegular [label="{UsuarioRegular||+ obtener_tipo_usuario(): str\l+ calcular_limite_prestamos(): int\l}"];
+
+    UsuarioPremium [label="{UsuarioPremium||+ obtener_tipo_usuario(): str\l+ calcular_limite_prestamos(): int\l}"];
+
+    Libro [label="{Libro|+ titulo: str\l+ autor: str\l+ isbn: str\l+ anio_publicacion: int\l+ cantidad_paginas: int\l}"];
+
+    Prestamo [label="{Prestamo|+ libro: Libro\l+ usuario: Usuario\l+ fecha_prestamo: date\l+ fecha_devolucion: date\l}"];
+
+    Biblioteca [label="{Biblioteca (Singleton)|- _instance: Biblioteca\l+ libros: List[Libro]\l+ usuarios: List[Usuario]\l+ prestamos: List[Prestamo]\l|+ alta_libro()\l+ baja_libro()\l+ modificar_libro()\l+ listar_libros()\l+ buscar_libro_por_isbn()\l+ registrar_usuario()\l+ baja_usuario()\l+ modificar_usuario()\l+ listar_usuarios()\l+ registrar_prestamo()\l+ registrar_devolucion()\l+ listar_prestamos()\l+ listar_prestamos_activos()\l+ tiene_prestamo_activo()\l}"];
+
+    Usuario -> Persona [arrowhead="empty"];
+    UsuarioRegular -> Usuario [arrowhead="empty"];
+    UsuarioPremium -> Usuario [arrowhead="empty"];
+
+    Libro -> MetaLibro [style="dashed", arrowhead="open"];
+
+    Biblioteca -> Libro [arrowhead="diamond", headlabel="0..*", taillabel="1"];
+    Biblioteca -> Usuario [arrowhead="diamond", headlabel="0..*", taillabel="1"];
+
+    Biblioteca -> Prestamo [arrowhead="diamond", style="filled", headlabel="0..*", taillabel="1"];
+
+    Nota [label="Metodos decorados con @log_operacion:\nalta_libro, baja_libro,\nregistrar_prestamo, registrar_devolucion", shape="note", fillcolor="lightyellow"];
+}
