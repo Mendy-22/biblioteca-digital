@@ -9,10 +9,10 @@ Sistema en Python para administrar libros, usuarios y prestamos de una bibliotec
 
 ## Integrantes
 
-- Nombre Apellido 1
-- Nombre Apellido 2
-- Nombre Apellido 3
-- Nombre Apellido 4
+- Nicolas Costantini
+- Carolina Torres
+- Federico Piquero
+- Mendy Ismael
 
 ## Requisitos
 
